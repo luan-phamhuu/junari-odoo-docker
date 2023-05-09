@@ -2,7 +2,7 @@ FROM --platform=linux/amd64 python:3.8-slim-bullseye
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
-ARG ODOO_VERSION
+ARG ODOO_VERSION="14.0"
 ARG ODOO_REVISION
 ARG DEBIAN_FRONTEND=noninteractive
 
