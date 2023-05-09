@@ -2,8 +2,8 @@ FROM --platform=linux/amd64 python:3.8-slim-bullseye
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
-ARG ODOO_VERSION=14.0
-ARG ODOO_REVISION
+# ARG ODOO_VERSION=14.0
+# ARG ODOO_REVISION
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -37,7 +37,7 @@ WORKDIR /opt/odoo
 
 # Install Odoo and dependencies from source and check out specific revision
 USER odoo
-RUN git clone --branch=$ODOO_VERSION --depth=1000 https://github.com/odoo/odoo.git odoo
+RUN git clone --branch=14.0 --depth=1000 https://github.com/odoo/odoo.git odoo
 RUN cd odoo # && git reset --hard $ODOO_REVISION
 
 # Install Odoo python package requirements
