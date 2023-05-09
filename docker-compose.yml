@@ -1,0 +1,34 @@
+version: '2'
+services:
+  web:
+    image: junari/odoo:14.0
+    container_name: junari-odoo-dev
+    platform: linux/amd64
+    restart: always
+    depends_on:
+      - db
+    env_file: odoo.env
+    ports:
+      - 8069:8069
+    volumes:
+      - junari-odoo-data-$ODOO_VERSION:/opt/odoo/data \
+      - junari-odoo-vscode-$ODOO_VERSION:/opt/odoo/.vscode \
+      - junari-odoo-custom-addons-$ODOO_VERSION:/opt/odoo/custom_addons \
+      - junari-odoo-home-$ODOO_VERSION:/home/odoo \
+    tty: true
+    command: bash
+
+  db:
+    image: postgres:13.2
+    env_file: db.env
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  junari-odoo-data-14.0:
+  junari-odoo-vscode-14.0:
+  junari-odoo-custom-addons-14.0:
+  junari-odoo-home-14.0:
+  pg_data:

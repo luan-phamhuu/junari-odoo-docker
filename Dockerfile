@@ -1,5 +1,4 @@
-
-FROM python:3.8-slim-bullseye
+FROM --platform=linux/amd64 python:3.8-slim-bullseye
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
@@ -39,7 +38,7 @@ WORKDIR /opt/odoo
 # Install Odoo and dependencies from source and check out specific revision
 USER odoo
 RUN git clone --branch=$ODOO_VERSION --depth=1000 https://github.com/odoo/odoo.git odoo
-RUN cd odoo && git reset --hard $ODOO_REVISION
+RUN cd odoo # && git reset --hard $ODOO_REVISION
 
 # Install Odoo python package requirements
 USER root

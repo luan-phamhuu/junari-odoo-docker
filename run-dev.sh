@@ -10,4 +10,5 @@ docker run --rm -it --name=junari-odoo-dev-$ODOO_VERSION \
     -v junari-odoo-custom-addons-$ODOO_VERSION:/opt/odoo/custom_addons \
     -v junari-odoo-home-$ODOO_VERSION:/home/odoo \
     -p 8069:8069 --env-file=odoo.env \
+		--platform=linux/amd64 \
     junari/odoo:$ODOO_VERSION bash
