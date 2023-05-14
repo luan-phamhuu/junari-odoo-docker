@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.8-slim-bullseye
+FROM python:3.8
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
@@ -20,7 +20,7 @@ RUN apt-get install -y \
     gcc g++ curl git nano postgresql-client
 
 # install wkhtmltox for PDF reports
-RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb \
+RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_arm64.deb \
     && apt-get install -y ./wkhtmltox.deb \
     && rm wkhtmltox.deb
 
@@ -43,6 +43,9 @@ RUN cd odoo # && git reset --hard $ODOO_REVISION
 # Install Odoo python package requirements
 USER root
 RUN pip3 install pip --upgrade
+# https://stackoverflow.com/questions/73667667/installing-odoo-on-mac-raises-gevent-error
+RUN pip install pip setuptools wheel Cython==3.0.0a10
+RUN pip install gevent==20.9.0 --no-build-isolation
 RUN pip3 install --no-cache-dir -r odoo/requirements.txt
 
 # Define runtime configuration
