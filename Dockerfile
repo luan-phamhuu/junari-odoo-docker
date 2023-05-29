@@ -13,7 +13,7 @@ ENV LANG C.UTF-8
 RUN apt-get update && \
     apt-get install -y libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev \
     libtiff5-dev libjpeg-dev libopenjp2-7-dev zlib1g-dev libfreetype6-dev \
-    liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev libpq-dev \
+    liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev libpq-dev
 
 # Install additional tools needed for build & run
 RUN apt-get install -y \
