@@ -61,6 +61,9 @@ USER odoo
 RUN mkdir /opt/odoo/data /opt/odoo/custom_addons \
     /opt/odoo/.vscode /home/odoo/.vscode-server
 
+# Copy Odoo addons
+COPY addons/ /opt/odoo/custom_addons
+
 ENV ODOO_RC /etc/odoo/odoo.conf
 ENV PATH="/opt/odoo/scripts:${PATH}"
 
