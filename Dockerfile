@@ -37,8 +37,8 @@ WORKDIR /opt/odoo
 
 # Install Odoo and dependencies from source and check out specific revision
 USER odoo
-RUN git clone --branch=14.0 --depth=1000 https://github.com/odoo/odoo.git odoo
-RUN cd odoo # && git reset --hard $ODOO_REVISION
+COPY src/odoo/ ./odoo/
+RUN cd odoo
 
 # Install Odoo python package requirements
 USER root
